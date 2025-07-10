@@ -199,7 +199,7 @@ export const HomePageDark = (): JSX.Element => {
             <div className="absolute w-[686px] left-[702px] h-full">
               <div className="relative h-full">
                 {/* Large resume display */}
-                <div className="absolute top-[20px] left-[20px] w-[600px] h-[580px] bg-white rounded-lg shadow-2xl overflow-hidden">
+                <div className="absolute top-[70px] left-[20px] w-[580px] h-[520px] bg-white rounded-lg shadow-2xl overflow-hidden">
                   <img
                     className="w-full h-full object-cover"
                     alt="Resume preview"
@@ -208,7 +208,7 @@ export const HomePageDark = (): JSX.Element => {
                 </div>
 
                 {/* Share button */}
-                <div className="absolute top-[20px] right-[20px]">
+                <div className="absolute top-[20px] right-[40px]">
                   <Button className="w-[85px] h-[38px] bg-[#006ce0] rounded-2xl flex items-center justify-center gap-1">
                     <LockIcon className="w-4 h-4 text-white" />
                     <span className="text-white text-[10px]">SHARE</span>
@@ -219,7 +219,7 @@ export const HomePageDark = (): JSX.Element => {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="absolute top-[20px] left-[20px] bg-black/20 hover:bg-black/40 rounded-full z-10"
+                  className="absolute top-[20px] left-[40px] bg-black/20 hover:bg-black/40 rounded-full z-10"
                   onClick={() => {
                     setShowFullResume(false);
                     setShowResumeTemplates(false);
@@ -229,7 +229,7 @@ export const HomePageDark = (): JSX.Element => {
                 </Button>
 
                 {/* Template selector at bottom */}
-                <div className="absolute bottom-[20px] left-[20px] right-[20px]">
+                <div className="absolute bottom-[20px] left-[20px] right-[20px] top-[620px]">
                   <div className={`w-full bg-[#232f3e] rounded-lg transition-all duration-300 border border-gray-600 ${isTemplatesExpanded ? 'h-[400px]' : 'h-[180px]'}`}>
                     {/* Header with expand/collapse */}
                     <div className="flex items-center justify-between p-3 border-b border-gray-600">
