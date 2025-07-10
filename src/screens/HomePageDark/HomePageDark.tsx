@@ -199,7 +199,7 @@ export const HomePageDark = (): JSX.Element => {
             <div className="absolute w-[686px] left-[702px] h-full">
               <div className="relative h-full">
                 {/* Large resume display */}
-                <div className="absolute top-[20px] left-[20px] w-[600px] h-[650px] bg-white rounded-lg shadow-2xl overflow-hidden">
+                <div className="absolute top-[20px] left-[20px] w-[600px] h-[580px] bg-white rounded-lg shadow-2xl overflow-hidden">
                   <img
                     className="w-full h-full object-cover"
                     alt="Resume preview"
@@ -230,7 +230,7 @@ export const HomePageDark = (): JSX.Element => {
 
                 {/* Template selector at bottom */}
                 <div className="absolute bottom-[20px] left-[20px] right-[20px]">
-                  <div className={`w-full bg-[#232f3e] rounded-lg transition-all duration-300 border border-gray-600 ${isTemplatesExpanded ? 'h-[350px]' : 'h-[150px]'}`}>
+                  <div className={`w-full bg-[#232f3e] rounded-lg transition-all duration-300 border border-gray-600 ${isTemplatesExpanded ? 'h-[400px]' : 'h-[180px]'}`}>
                     {/* Header with expand/collapse */}
                     <div className="flex items-center justify-between p-3 border-b border-gray-600">
                       <h3 className="text-white text-sm font-medium">Resume Templates</h3>
@@ -249,7 +249,7 @@ export const HomePageDark = (): JSX.Element => {
                     </div>
 
                     {/* Templates content */}
-                    <div className="p-5 overflow-hidden">
+                    <div className="p-6 overflow-hidden">
                       {!isTemplatesExpanded ? (
                         /* Collapsed view - horizontal scroll */
                         <div className="relative">
@@ -262,11 +262,11 @@ export const HomePageDark = (): JSX.Element => {
                             <ArrowLeftIcon className="w-4 h-4 text-white" />
                           </Button>
 
-                          <div className="flex gap-4 justify-center mx-10">
-                            {resumeTemplates.slice(currentTemplateIndex, currentTemplateIndex + 6).map((template, index) => (
+                          <div className="flex gap-5 justify-center mx-12">
+                            {resumeTemplates.slice(currentTemplateIndex, currentTemplateIndex + 5).map((template, index) => (
                               <div key={`collapsed-${index}`} className="flex-shrink-0">
                                 <div
-                                  className={`w-[80px] h-[60px] ${template.color} cursor-pointer hover:opacity-80 hover:scale-105 transition-all duration-200 rounded-md border border-gray-400 shadow-sm`}
+                                  className={`w-[95px] h-[80px] ${template.color} cursor-pointer hover:opacity-80 hover:scale-105 transition-all duration-200 rounded-md border border-gray-400 shadow-md`}
                                   onClick={() => setShowFullResume(true)}
                                 />
                               </div>
@@ -284,12 +284,12 @@ export const HomePageDark = (): JSX.Element => {
                         </div>
                       ) : (
                         /* Expanded view - grid */
-                        <ScrollArea className="max-h-[270px]">
-                          <div className="grid grid-cols-6 gap-4 pr-4">
+                        <ScrollArea className="max-h-[320px]">
+                          <div className="grid grid-cols-5 gap-5 pr-4">
                           {resumeTemplates.map((template, index) => (
                             <div
                               key={`expanded-${index}`}
-                                className={`w-[80px] h-[100px] ${template.color} cursor-pointer hover:opacity-80 hover:scale-105 transition-all duration-200 rounded-md border border-gray-400 shadow-sm`}
+                                className={`w-[95px] h-[120px] ${template.color} cursor-pointer hover:opacity-80 hover:scale-105 transition-all duration-200 rounded-md border border-gray-400 shadow-md`}
                               onClick={() => setShowFullResume(true)}
                             />
                           ))}
