@@ -334,6 +334,66 @@ export const HomePageDark = (): JSX.Element => {
                     </div>
                   </div>
                 )}
+
+                {/* Bottom templates section - similar to reference image */}
+                <div className="absolute bottom-0 left-0 right-0 h-[200px] bg-[#232f3e] border-t border-gray-600">
+                  {/* Header */}
+                  <div className="flex items-center justify-between px-6 py-4 border-b border-gray-600">
+                    <h3 className="text-white text-lg font-medium">Resume Templates</h3>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="w-8 h-8 hover:bg-gray-700"
+                      onClick={() => setIsTemplatesExpanded(!isTemplatesExpanded)}
+                    >
+                      {isTemplatesExpanded ? (
+                        <ChevronDownIcon className="w-5 h-5 text-white" />
+                      ) : (
+                        <ChevronUpIcon className="w-5 h-5 text-white" />
+                      )}
+                    </Button>
+                  </div>
+
+                  {/* Templates grid */}
+                  <div className="px-6 py-4">
+                    <div className="relative">
+                      {/* Navigation arrows */}
+                      <Button
+                        onClick={handlePrevTemplate}
+                        variant="ghost"
+                        size="icon"
+                        className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 bg-gray-700 hover:bg-gray-600 rounded-full"
+                        disabled={currentTemplateIndex === 0}
+                      >
+                        <ArrowLeftIcon className="w-5 h-5 text-white" />
+                      </Button>
+
+                      <Button
+                        onClick={handleNextTemplate}
+                        variant="ghost"
+                        size="icon"
+                        className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 bg-gray-700 hover:bg-gray-600 rounded-full"
+                        disabled={currentTemplateIndex >= resumeTemplates.length - 4}
+                      >
+                        <ArrowRightIcon className="w-5 h-5 text-white" />
+                      </Button>
+
+                      {/* Templates display */}
+                      <div className="flex gap-6 justify-center mx-16">
+                        {resumeTemplates.slice(currentTemplateIndex, currentTemplateIndex + 4).map((template, index) => (
+                          <div
+                            key={`bottom-template-${currentTemplateIndex + index}`}
+                            className={`w-[120px] h-[100px] ${template.color} cursor-pointer hover:opacity-80 hover:scale-105 transition-all duration-200 rounded-lg border-2 border-gray-400 shadow-lg`}
+                            onClick={() => {
+                              // Handle template selection
+                              console.log(`Selected template ${currentTemplateIndex + index + 1}`);
+                            }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           )}
