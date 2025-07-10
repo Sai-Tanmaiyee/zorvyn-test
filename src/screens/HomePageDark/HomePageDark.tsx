@@ -17,7 +17,7 @@ import { ScrollArea, ScrollBar } from "../../components/ui/scroll-area";
 export const HomePageDark = (): JSX.Element => {
   const [showResumeTemplates, setShowResumeTemplates] = useState(false);
   const [showFullResume, setShowFullResume] = useState(false);
-  const [isTemplatesExpanded, setIsTemplatesExpanded] = useState(false);
+  const [isTemplatesExpanded, setIsTemplatesExpanded] = useState(true);
   const [inputValue, setInputValue] = useState("");
   const [currentTemplateIndex, setCurrentTemplateIndex] = useState(0);
 
@@ -222,8 +222,8 @@ export const HomePageDark = (): JSX.Element => {
                 </Button>
 
                 {/* Template selector at bottom */}
-                <div className="absolute bottom-[20px] left-[20px] right-[20px] top-[580px]">
-                  <div className={`w-full bg-[#232f3e] rounded-lg transition-all duration-300 border border-gray-600 ${isTemplatesExpanded ? 'h-[400px]' : 'h-[180px]'}`}>
+                <div className="absolute bottom-[20px] left-[20px] right-[20px]">
+                  <div className={`w-full bg-[#232f3e] rounded-lg transition-all duration-300 border border-gray-600 ${isTemplatesExpanded ? 'h-[300px]' : 'h-[120px]'}`}>
                     {/* Header with expand/collapse */}
                     <div className="flex items-center justify-between p-3 border-b border-gray-600">
                       <h3 className="text-white text-sm font-medium">Resume Templates</h3>
@@ -242,7 +242,7 @@ export const HomePageDark = (): JSX.Element => {
                     </div>
 
                     {/* Templates content */}
-                    <div className="p-6 overflow-hidden">
+                    <div className="p-4 overflow-hidden h-full">
                       {!isTemplatesExpanded ? (
                         /* Collapsed view - horizontal scroll */
                         <div className="relative">
@@ -256,10 +256,10 @@ export const HomePageDark = (): JSX.Element => {
                           </Button>
 
                           <div className="flex gap-5 justify-center mx-12">
-                            {resumeTemplates.slice(currentTemplateIndex, currentTemplateIndex + 5).map((template, index) => (
+                            {resumeTemplates.slice(currentTemplateIndex, currentTemplateIndex + 4).map((template, index) => (
                               <div key={`collapsed-${index}`} className="flex-shrink-0">
                                 <div
-                                  className={`w-[95px] h-[80px] ${template.color} cursor-pointer hover:opacity-80 hover:scale-105 transition-all duration-200 rounded-md border border-gray-400 shadow-md`}
+                                  className={`w-[110px] h-[60px] ${template.color} cursor-pointer hover:opacity-80 hover:scale-105 transition-all duration-200 rounded-md border border-gray-400 shadow-md`}
                                   onClick={() => setShowFullResume(true)}
                                 />
                               </div>
@@ -277,18 +277,22 @@ export const HomePageDark = (): JSX.Element => {
                         </div>
                       ) : (
                         /* Expanded view - grid */
-                        <ScrollArea className="max-h-[320px]">
-                          <div className="grid grid-cols-5 gap-5 pr-4">
-                          {resumeTemplates.map((template, index) => (
-                            <div
-                              key={`expanded-${index}`}
-                                className={`w-[95px] h-[120px] ${template.color} cursor-pointer hover:opacity-80 hover:scale-105 transition-all duration-200 rounded-md border border-gray-400 shadow-md`}
-                              onClick={() => setShowFullResume(true)}
-                            />
-                          ))}
+                        <div className="h-full">
+                          <ScrollArea className="h-[240px]">
+                            <div className="grid grid-cols-4 gap-4 pr-4">
+                              {resumeTemplates.map((template, index) => (
+                                <div
+                                  key={`expanded-${index}`}
+                                  className={`w-[120px] h-[90px] ${template.color} cursor-pointer hover:opacity-80 hover:scale-105 transition-all duration-200 rounded-md border border-gray-400 shadow-md flex items-center justify-center`}
+                                  onClick={() => setShowFullResume(true)}
+                                >
+                                  <span className="text-white text-xs font-medium">Template {index + 1}</span>
+                                </div>
+                              ))}
+                            </div>
+                            <ScrollBar orientation="vertical" className="w-1 bg-gray-600/40" />
+                          </ScrollArea>
                           </div>
-                          <ScrollBar orientation="vertical" className="w-1 bg-gray-600/40" />
-                        </ScrollArea>
                       )}
                     </div>
                   </div>
