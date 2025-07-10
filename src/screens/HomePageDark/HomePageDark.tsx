@@ -151,7 +151,7 @@ export const HomePageDark = (): JSX.Element => {
                 {/* Add some bottom padding to ensure last message is visible */}
                 <div className="h-[120px]"></div>
               </div>
-              <ScrollBar orientation="vertical" className="w-2" />
+              <ScrollBar orientation="vertical" className="w-1 bg-gray-700/30" />
             </ScrollArea>
 
             {/* Chat input - Fixed at bottom */}
@@ -185,13 +185,6 @@ export const HomePageDark = (): JSX.Element => {
               />
             )}
 
-            {/* Expand/collapse buttons - only show when templates are visible */}
-            {showResumeTemplates && (
-              <>
-                <ChevronUpIcon className="absolute w-6 h-6 top-[77px] left-[658px] text-white" />
-                <ChevronUpIcon className="absolute w-6 h-6 bottom-[82px] left-[658px] text-white" />
-              </>
-            )}
           </div>
 
           {/* Right side - Resume section */}
@@ -199,7 +192,7 @@ export const HomePageDark = (): JSX.Element => {
             <div className="absolute w-[686px] left-[702px] h-full">
               <div className="relative h-full">
                 {/* Large resume display */}
-                <div className="absolute top-[70px] left-[20px] w-[580px] h-[520px] bg-white rounded-lg shadow-2xl overflow-hidden">
+                <div className="absolute top-[70px] left-[20px] w-[560px] h-[480px] bg-white rounded-lg shadow-2xl overflow-hidden">
                   <img
                     className="w-full h-full object-cover"
                     alt="Resume preview"
@@ -208,7 +201,7 @@ export const HomePageDark = (): JSX.Element => {
                 </div>
 
                 {/* Share button */}
-                <div className="absolute top-[20px] right-[40px]">
+                <div className="absolute top-[20px] right-[60px]">
                   <Button className="w-[85px] h-[38px] bg-[#006ce0] rounded-2xl flex items-center justify-center gap-1">
                     <LockIcon className="w-4 h-4 text-white" />
                     <span className="text-white text-[10px]">SHARE</span>
@@ -219,7 +212,7 @@ export const HomePageDark = (): JSX.Element => {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="absolute top-[20px] left-[40px] bg-black/20 hover:bg-black/40 rounded-full z-10"
+                  className="absolute top-[20px] left-[20px] bg-black/20 hover:bg-black/40 rounded-full z-10"
                   onClick={() => {
                     setShowFullResume(false);
                     setShowResumeTemplates(false);
@@ -229,7 +222,7 @@ export const HomePageDark = (): JSX.Element => {
                 </Button>
 
                 {/* Template selector at bottom */}
-                <div className="absolute bottom-[20px] left-[20px] right-[20px] top-[620px]">
+                <div className="absolute bottom-[20px] left-[20px] right-[20px] top-[580px]">
                   <div className={`w-full bg-[#232f3e] rounded-lg transition-all duration-300 border border-gray-600 ${isTemplatesExpanded ? 'h-[400px]' : 'h-[180px]'}`}>
                     {/* Header with expand/collapse */}
                     <div className="flex items-center justify-between p-3 border-b border-gray-600">
@@ -294,7 +287,7 @@ export const HomePageDark = (): JSX.Element => {
                             />
                           ))}
                           </div>
-                          <ScrollBar orientation="vertical" className="w-2" />
+                          <ScrollBar orientation="vertical" className="w-1 bg-gray-700/30" />
                         </ScrollArea>
                       )}
                     </div>
@@ -334,66 +327,6 @@ export const HomePageDark = (): JSX.Element => {
                     </div>
                   </div>
                 )}
-
-                {/* Bottom templates section - similar to reference image */}
-                <div className="absolute bottom-0 left-0 right-0 h-[200px] bg-[#232f3e] border-t border-gray-600">
-                  {/* Header */}
-                  <div className="flex items-center justify-between px-6 py-4 border-b border-gray-600">
-                    <h3 className="text-white text-lg font-medium">Resume Templates</h3>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="w-8 h-8 hover:bg-gray-700"
-                      onClick={() => setIsTemplatesExpanded(!isTemplatesExpanded)}
-                    >
-                      {isTemplatesExpanded ? (
-                        <ChevronDownIcon className="w-5 h-5 text-white" />
-                      ) : (
-                        <ChevronUpIcon className="w-5 h-5 text-white" />
-                      )}
-                    </Button>
-                  </div>
-
-                  {/* Templates grid */}
-                  <div className="px-6 py-4">
-                    <div className="relative">
-                      {/* Navigation arrows */}
-                      <Button
-                        onClick={handlePrevTemplate}
-                        variant="ghost"
-                        size="icon"
-                        className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 bg-gray-700 hover:bg-gray-600 rounded-full"
-                        disabled={currentTemplateIndex === 0}
-                      >
-                        <ArrowLeftIcon className="w-5 h-5 text-white" />
-                      </Button>
-
-                      <Button
-                        onClick={handleNextTemplate}
-                        variant="ghost"
-                        size="icon"
-                        className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 bg-gray-700 hover:bg-gray-600 rounded-full"
-                        disabled={currentTemplateIndex >= resumeTemplates.length - 4}
-                      >
-                        <ArrowRightIcon className="w-5 h-5 text-white" />
-                      </Button>
-
-                      {/* Templates display */}
-                      <div className="flex gap-6 justify-center mx-16">
-                        {resumeTemplates.slice(currentTemplateIndex, currentTemplateIndex + 4).map((template, index) => (
-                          <div
-                            key={`bottom-template-${currentTemplateIndex + index}`}
-                            className={`w-[120px] h-[100px] ${template.color} cursor-pointer hover:opacity-80 hover:scale-105 transition-all duration-200 rounded-lg border-2 border-gray-400 shadow-lg`}
-                            onClick={() => {
-                              // Handle template selection
-                              console.log(`Selected template ${currentTemplateIndex + index + 1}`);
-                            }}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           )}
