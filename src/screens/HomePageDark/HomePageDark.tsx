@@ -17,7 +17,7 @@ import { ScrollArea, ScrollBar } from "../../components/ui/scroll-area";
 export const HomePageDark = (): JSX.Element => {
   const [showResumeTemplates, setShowResumeTemplates] = useState(false);
   const [showFullResume, setShowFullResume] = useState(false);
-  const [isTemplatesExpanded, setIsTemplatesExpanded] = useState(true);
+  const [isTemplatesExpanded, setIsTemplatesExpanded] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [currentTemplateIndex, setCurrentTemplateIndex] = useState(0);
 
@@ -223,7 +223,7 @@ export const HomePageDark = (): JSX.Element => {
 
                 {/* Template selector at bottom */}
                 <div className="absolute bottom-[20px] left-[20px] right-[20px]">
-                  <div className={`w-full bg-[#232f3e] rounded-lg transition-all duration-300 border border-gray-600 ${isTemplatesExpanded ? 'h-[300px]' : 'h-[120px]'}`}>
+                  <div className={`w-full bg-[#232f3e] rounded-lg transition-all duration-300 border border-gray-600 ${isTemplatesExpanded ? 'h-[300px]' : 'h-[100px]'}`}>
                     {/* Header with expand/collapse */}
                     <div className="flex items-center justify-between p-3 border-b border-gray-600">
                       <h3 className="text-white text-sm font-medium">Resume Templates</h3>
@@ -242,26 +242,28 @@ export const HomePageDark = (): JSX.Element => {
                     </div>
 
                     {/* Templates content */}
-                    <div className="p-4 overflow-hidden h-full">
+                    <div className="p-3 overflow-hidden">
                       {!isTemplatesExpanded ? (
                         /* Collapsed view - horizontal scroll */
-                        <div className="relative">
+                        <div className="relative h-[50px] flex items-center">
                           <Button
                             onClick={handlePrevTemplate}
                             variant="ghost"
                             size="icon"
-                            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 w-8 h-8 bg-gray-700 hover:bg-gray-600 rounded-full"
+                            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 w-6 h-6 bg-gray-700 hover:bg-gray-600 rounded-full"
                           >
-                            <ArrowLeftIcon className="w-4 h-4 text-white" />
+                            <ArrowLeftIcon className="w-3 h-3 text-white" />
                           </Button>
 
-                          <div className="flex gap-5 justify-center mx-12">
+                          <div className="flex gap-3 justify-center mx-8">
                             {resumeTemplates.slice(currentTemplateIndex, currentTemplateIndex + 4).map((template, index) => (
                               <div key={`collapsed-${index}`} className="flex-shrink-0">
                                 <div
-                                  className={`w-[110px] h-[60px] ${template.color} cursor-pointer hover:opacity-80 hover:scale-105 transition-all duration-200 rounded-md border border-gray-400 shadow-md`}
+                                  className={`w-[90px] h-[50px] ${template.color} cursor-pointer hover:opacity-80 hover:scale-105 transition-all duration-200 rounded-md border border-gray-400 shadow-md flex items-center justify-center`}
                                   onClick={() => setShowFullResume(true)}
-                                />
+                                >
+                                  <span className="text-white text-[10px] font-medium">T{currentTemplateIndex + index + 1}</span>
+                                </div>
                               </div>
                             ))}
                           </div>
@@ -270,14 +272,14 @@ export const HomePageDark = (): JSX.Element => {
                             onClick={handleNextTemplate}
                             variant="ghost"
                             size="icon"
-                            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 w-8 h-8 bg-gray-700 hover:bg-gray-600 rounded-full"
+                            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 w-6 h-6 bg-gray-700 hover:bg-gray-600 rounded-full"
                           >
-                            <ArrowRightIcon className="w-4 h-4 text-white" />
+                            <ArrowRightIcon className="w-3 h-3 text-white" />
                           </Button>
                         </div>
                       ) : (
                         /* Expanded view - grid */
-                        <div className="h-full">
+                        <div className="h-[240px]">
                           <ScrollArea className="h-[240px]">
                             <div className="grid grid-cols-4 gap-4 pr-4">
                               {resumeTemplates.map((template, index) => (
