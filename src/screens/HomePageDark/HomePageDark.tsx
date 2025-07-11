@@ -192,7 +192,7 @@ export const HomePageDark = (): JSX.Element => {
             <div className="absolute w-[686px] left-[702px] h-full">
               <div className="relative h-full">
                 {/* Large resume display */}
-                <div className="absolute top-[60px] left-[20px] w-[560px] h-[480px] bg-white rounded-lg shadow-2xl overflow-hidden">
+                <div className="absolute top-[40px] left-[80px] w-[500px] h-[480px] bg-white rounded-lg shadow-2xl overflow-hidden">
                   <img
                     className="w-full h-full object-cover"
                     alt="Resume preview"
@@ -201,7 +201,7 @@ export const HomePageDark = (): JSX.Element => {
                 </div>
 
                 {/* Share button */}
-                <div className="absolute top-[10px] right-[10px]">
+                <div className="absolute top-[40px] right-[20px]">
                   <Button className="w-[85px] h-[38px] bg-[#006ce0] rounded-2xl flex items-center justify-center gap-1">
                     <LockIcon className="w-4 h-4 text-white" />
                     <span className="text-white text-[10px]">SHARE</span>
@@ -212,7 +212,7 @@ export const HomePageDark = (): JSX.Element => {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="absolute top-[20px] left-[20px] bg-black/20 hover:bg-black/40 rounded-full z-10"
+                  className="absolute top-[40px] left-[20px] bg-black/20 hover:bg-black/40 rounded-full z-10"
                   onClick={() => {
                     setShowFullResume(false);
                     setShowResumeTemplates(false);
