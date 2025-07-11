@@ -223,7 +223,7 @@ export const HomePageDark = (): JSX.Element => {
 
                 {/* Template selector at bottom */}
                 <div className="absolute bottom-[20px] left-[20px] right-[20px]">
-                  <div className={`w-full bg-[#232f3e] rounded-lg transition-all duration-300 border border-gray-600 ${isTemplatesExpanded ? 'h-[300px]' : 'h-[100px]'}`}>
+                  <div className={`w-full bg-[#232f3e] rounded-lg transition-all duration-300 border border-gray-600 ${isTemplatesExpanded ? 'h-[300px]' : 'h-[130px]'}`}>
                     {/* Header with expand/collapse */}
                     <div className="flex items-center justify-between p-3 border-b border-gray-600">
                       <h3 className="text-white text-sm font-medium">Resume Templates</h3>
@@ -245,7 +245,7 @@ export const HomePageDark = (): JSX.Element => {
                     <div className="p-3 overflow-hidden">
                       {!isTemplatesExpanded ? (
                         /* Collapsed view - horizontal scroll */
-                        <div className="relative h-[50px] flex items-center">
+                        <div className="relative h-[80px] flex items-center">
                           <Button
                             onClick={handlePrevTemplate}
                             variant="ghost"
