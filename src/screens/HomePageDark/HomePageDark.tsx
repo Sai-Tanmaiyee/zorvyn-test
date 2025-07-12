@@ -79,7 +79,7 @@ export const HomePageDark = (): JSX.Element => {
         <div className="absolute w-[1388px] h-full top-0 left-[38px]">
           {/* Left side - Chat interface */}
           <div className={`absolute top-0 h-full ${showResumeTemplates ? 'left-0 w-[706px]' : 'left-1/2 transform -translate-x-1/2 w-[800px]'}`}>
-            <ScrollArea className={`absolute top-0 ${showResumeTemplates ? 'w-[650px] left-10' : 'w-[700px] left-1/2 transform -translate-x-1/2'}`} style={{ height: 'calc(100vh - 80px)' }}>
+            <ScrollArea className={`absolute top-0 ${showResumeTemplates ? 'w-[650px] left-10' : 'w-[700px] left-1/2 transform -translate-x-1/2'}`} style={{ height: 'calc(100vh - 90px)' }}>
               <div className="pr-6">
                 {/* Chat messages */}
                 <div className={`mt-[115px] mb-6 ${showResumeTemplates ? 'ml-[191px]' : 'ml-[152px]'}`}>
@@ -151,10 +151,7 @@ export const HomePageDark = (): JSX.Element => {
                 {/* Add some bottom padding to ensure last message is visible */}
                 <div className="h-[120px]"></div>
               </div>
-              <ScrollBar
-                orientation="vertical"
-                className="w-1.5 bg-[#d9d9d9] rounded-2xl"
-              />
+              <ScrollBar orientation="vertical" className="w-1 bg-gray-700/30" />
             </ScrollArea>
 
             {/* Chat input - Fixed at bottom */}
@@ -188,13 +185,6 @@ export const HomePageDark = (): JSX.Element => {
               />
             )}
 
-            {/* Expand/collapse buttons - only show when templates are visible */}
-            {showResumeTemplates && (
-              <>
-                <ChevronUpIcon className="absolute w-6 h-6 top-[77px] left-[658px] text-white" />
-                <ChevronUpIcon className="absolute w-6 h-6 bottom-[82px] left-[658px] text-white" />
-              </>
-            )}
           </div>
 
           {/* Right side - Resume section */}
@@ -202,7 +192,7 @@ export const HomePageDark = (): JSX.Element => {
             <div className="absolute w-[686px] left-[702px] h-full">
               <div className="relative h-full">
                 {/* Large resume display */}
-                <div className="absolute top-[20px] left-[20px] w-[600px] h-[800px] bg-white rounded-lg shadow-2xl overflow-hidden">
+                <div className="absolute top-[40px] left-[80px] w-[500px] h-[480px] bg-white rounded-lg shadow-2xl overflow-hidden">
                   <img
                     className="w-full h-full object-cover"
                     alt="Resume preview"
@@ -211,7 +201,7 @@ export const HomePageDark = (): JSX.Element => {
                 </div>
 
                 {/* Share button */}
-                <div className="absolute top-[20px] right-[20px]">
+                <div className="absolute top-[40px] right-[20px]">
                   <Button className="w-[85px] h-[38px] bg-[#006ce0] rounded-2xl flex items-center justify-center gap-1">
                     <LockIcon className="w-4 h-4 text-white" />
                     <span className="text-white text-[10px]">SHARE</span>
@@ -222,7 +212,7 @@ export const HomePageDark = (): JSX.Element => {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="absolute top-[20px] left-[20px] bg-black/20 hover:bg-black/40 rounded-full z-10"
+                  className="absolute top-[40px] left-[20px] bg-black/20 hover:bg-black/40 rounded-full z-10"
                   onClick={() => {
                     setShowFullResume(false);
                     setShowResumeTemplates(false);
@@ -233,7 +223,7 @@ export const HomePageDark = (): JSX.Element => {
 
                 {/* Template selector at bottom */}
                 <div className="absolute bottom-[20px] left-[20px] right-[20px]">
-                  <div className={`w-full bg-[#232f3e] rounded-lg transition-all duration-300 ${isTemplatesExpanded ? 'h-[300px]' : 'h-[120px]'}`}>
+                  <div className={`w-full bg-[#232f3e] rounded-lg transition-all duration-300 border border-gray-600 ${isTemplatesExpanded ? 'h-[300px]' : 'h-[130px]'}`}>
                     {/* Header with expand/collapse */}
                     <div className="flex items-center justify-between p-3 border-b border-gray-600">
                       <h3 className="text-white text-sm font-medium">Resume Templates</h3>
@@ -252,10 +242,10 @@ export const HomePageDark = (): JSX.Element => {
                     </div>
 
                     {/* Templates content */}
-                    <div className="p-4 overflow-hidden">
+                    <div className="p-3 overflow-hidden">
                       {!isTemplatesExpanded ? (
                         /* Collapsed view - horizontal scroll */
-                        <div className="relative">
+                        <div className="relative h-[80px] flex items-center">
                           <Button
                             onClick={handlePrevTemplate}
                             variant="ghost"
@@ -266,12 +256,14 @@ export const HomePageDark = (): JSX.Element => {
                           </Button>
 
                           <div className="flex gap-3 justify-center mx-8">
-                            {resumeTemplates.slice(currentTemplateIndex, currentTemplateIndex + 6).map((template, index) => (
+                            {resumeTemplates.slice(currentTemplateIndex, currentTemplateIndex + 4).map((template, index) => (
                               <div key={`collapsed-${index}`} className="flex-shrink-0">
                                 <div
-                                  className={`w-[70px] h-[50px] ${template.color} cursor-pointer hover:opacity-80 transition-opacity rounded border border-gray-500`}
+                                  className={`w-[90px] h-[50px] ${template.color} cursor-pointer hover:opacity-80 hover:scale-105 transition-all duration-200 rounded-md border border-gray-400 shadow-md flex items-center justify-center`}
                                   onClick={() => setShowFullResume(true)}
-                                />
+                                >
+                                  <span className="text-white text-[10px] font-medium">T{currentTemplateIndex + index + 1}</span>
+                                </div>
                               </div>
                             ))}
                           </div>
@@ -287,15 +279,22 @@ export const HomePageDark = (): JSX.Element => {
                         </div>
                       ) : (
                         /* Expanded view - grid */
-                        <div className="grid grid-cols-6 gap-3 max-h-[220px] overflow-y-auto">
-                          {resumeTemplates.map((template, index) => (
-                            <div
-                              key={`expanded-${index}`}
-                              className={`w-[70px] h-[90px] ${template.color} cursor-pointer hover:opacity-80 transition-opacity rounded border border-gray-500`}
-                              onClick={() => setShowFullResume(true)}
-                            />
-                          ))}
-                        </div>
+                        <div className="h-[240px]">
+                          <ScrollArea className="h-[240px]">
+                            <div className="grid grid-cols-4 gap-4 pr-4">
+                              {resumeTemplates.map((template, index) => (
+                                <div
+                                  key={`expanded-${index}`}
+                                  className={`w-[120px] h-[90px] ${template.color} cursor-pointer hover:opacity-80 hover:scale-105 transition-all duration-200 rounded-md border border-gray-400 shadow-md flex items-center justify-center`}
+                                  onClick={() => setShowFullResume(true)}
+                                >
+                                  <span className="text-white text-xs font-medium">Template {index + 1}</span>
+                                </div>
+                              ))}
+                            </div>
+                            <ScrollBar orientation="vertical" className="w-1 bg-gray-600/40" />
+                          </ScrollArea>
+                          </div>
                       )}
                     </div>
                   </div>
@@ -303,34 +302,49 @@ export const HomePageDark = (): JSX.Element => {
 
                 {/* Full screen overlay when showFullResume is true */}
                 {showFullResume && (
-                  <div className="absolute inset-0 bg-[#232f3e] z-50">
+                  <div className="fixed inset-0 bg-[#232f3e] z-50 overflow-hidden">
                     {/* Close button for full screen */}
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="absolute top-[20px] left-[13px]"
+                      className="absolute top-[20px] left-[20px] bg-gray-700/50 hover:bg-gray-600 rounded-full z-10"
                       onClick={() => setShowFullResume(false)}
                     >
-                      <XIcon className="w-8 h-8 text-white" />
+                      <XIcon className="w-6 h-6 text-white" />
                     </Button>
 
-                    {/* Full screen template grid */}
-                    <div className="grid grid-cols-4 gap-6 px-[58px] pt-[54px]">
-                      {resumeTemplates.slice(0, 4).map((template, index) => (
-                        <div
-                          key={`template-${index}`}
-                          className={`w-[140px] h-[180px] ${template.color} cursor-pointer hover:opacity-80 transition-opacity rounded-lg border border-gray-400`}
-                          onClick={() => setShowFullResume(false)}
-                        />
-                      ))}
-
-                      {resumeTemplates.slice(4, 6).map((template, index) => (
-                        <div
-                          key={`template-second-${index}`}
-                          className={`w-[140px] h-[180px] mt-6 ${template.color} cursor-pointer hover:opacity-80 transition-opacity rounded-lg border border-gray-400`}
-                          onClick={() => setShowFullResume(false)}
-                        />
-                      ))}
+                    {/* Full screen template grid - matching reference image */}
+                    <div className="flex items-center justify-center min-h-screen p-8">
+                      <div className="grid grid-cols-4 gap-8 max-w-6xl">
+                        {resumeTemplates.map((template, index) => (
+                          <div
+                            key={`fullscreen-template-${index}`}
+                            className="relative group cursor-pointer"
+                            onClick={() => setShowFullResume(false)}
+                          >
+                            {/* Template preview */}
+                            <div className={`w-[200px] h-[280px] ${template.color} rounded-lg border border-gray-400 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105`}>
+                              {/* Mock resume content */}
+                              <div className="p-4 h-full flex flex-col">
+                                <div className="w-full h-4 bg-white/20 rounded mb-2"></div>
+                                <div className="w-3/4 h-3 bg-white/15 rounded mb-4"></div>
+                                <div className="space-y-2 flex-1">
+                                  <div className="w-full h-2 bg-white/10 rounded"></div>
+                                  <div className="w-5/6 h-2 bg-white/10 rounded"></div>
+                                  <div className="w-4/5 h-2 bg-white/10 rounded"></div>
+                                  <div className="w-full h-2 bg-white/10 rounded mt-4"></div>
+                                  <div className="w-3/4 h-2 bg-white/10 rounded"></div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            {/* Hover overlay */}
+                            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
+                              <span className="text-white font-medium">Select Template</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 )}
